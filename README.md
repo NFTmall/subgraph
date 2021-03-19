@@ -1,6 +1,18 @@
-# Protocol subgraph
+# NFTmall subgraph
 
-The [subgraph](https://thegraph.com/explorer/subgraph/rarible/protocol) provides information on purchases at [Rarible](https://rarible.com), including commission amounts.
+- local testing
+```bash
+npm run build-data -- --network mainnet
+
+npm run codegen
+npm run build
+
+npm run create-local
+npm run deploy-local
+```
+
+
+The [subgraph](https://thegraph.com/explorer/subgraph/NFTmall/subgraph) provides information on purchases at [Rarible](https://rarible.com), including commission amounts.
 
 Contracts support status in the current version:
 
@@ -61,7 +73,7 @@ Please follow the official [documentation](https://thegraph.com/docs/define-a-su
 
 ## Queries
 
-HTTP queries can be accessed at: https://api.thegraph.com/subgraphs/name/rarible/protocol.
+HTTP queries can be accessed at: https://api.thegraph.com/subgraphs/name/NFTmall/subgraph.
 
 **List of deals**
 ```GraphQL
