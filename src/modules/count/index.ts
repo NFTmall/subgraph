@@ -10,9 +10,9 @@ export function buildCount(): Count {
   if (count == null) {
     count = new Count(DEFAULT_ID)
     count.orderTotal = 0
-    count.orderNFTmall721 = 0
+    count.orderNFTmallERC721 = 0
 
-    count.nftmall721Total = 0;
+    count.nftmallERC721Total = 0;
 
     count.started = 0
   }
@@ -25,8 +25,8 @@ export function buildCountFromNFT(nft: NFT): Count {
   // let contractAddress = nft.contractAddress.toHexString()
   let count = buildCount()
 
-  if (category == categories.NFTMALL721) {
-    count.nftmall721Total += 1
+  if (category == categories.NFTMALLERC721) {
+    count.nftmallERC721Total += 1
   }
 
   return count
@@ -37,8 +37,8 @@ export function buildCountFromNFT(nft: NFT): Count {
 //   let count = buildCount()
 //   count.orderTotal += 1
 
-//   if (category == categories.NFTMALL721) {
-//     count.orderNFTmall721 += 1
+//   if (category == categories.NFTMALLERC721) {
+//     count.orderNFTmallERC721 += 1
 //   }
 //   return count
 // }

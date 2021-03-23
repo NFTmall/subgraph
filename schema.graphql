@@ -104,8 +104,8 @@ type Bid @entity {
 type Count @entity {
   id: ID!
   orderTotal: Int!
-  orderNFTmall721: Int!
-  nftmall721Total: Int!
+  orderNFTmallERC721: Int!
+  nftmallERC721Total: Int!
   started: Int!
 }
 
@@ -123,12 +123,12 @@ type Count @entity {
 # NFTs ----------------------------------------------------
 # ---------------------------------------------------------
 
-type NFTmall721 @entity {
+type NFTmallERC721 @entity {
   id: ID!
   owner: Account!
   description: String
   generation: Int
-  nft: NFT @derivedFrom(field: "nftmall721")
+  nft: NFT @derivedFrom(field: "nftmallERC721")
 }
 
 type NFT @entity {
@@ -152,7 +152,7 @@ type NFT @entity {
   # fees: [BigInt!]
   # feeAccounts: [Bytes!]
 
-  nftmall721: NFTmall721
+  nftmallERC721: NFTmallERC721
 
   createdAt: BigInt!
   updatedAt: BigInt!
@@ -163,7 +163,7 @@ type NFT @entity {
   # searchOrderExpiresAt: BigInt
   # searchOrderCreatedAt: BigInt
 
-  # searchNFTmall721Generation: Int # dummy property of legacy nft
+  # searchNFTmallERC721Generation: Int # dummy property of legacy nft
 }
 
 # ---------------------------------------------------------
@@ -183,7 +183,7 @@ type Account @entity {
 # ---------------------------------------------------------
 
 enum Category @entity {
-  nftmall721
+  nftmallERC721
 }
 
 

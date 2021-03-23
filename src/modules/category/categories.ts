@@ -1,3 +1,3 @@
 // export const ENS = 'ens'
-export const NFTMALL721 = 'nftmall721'
-export const NFTMALL1155 = 'NFTmall1155'
+export const NFTMALLERC721 = 'NFTmallERC721'
+export const NFTMALLERC1155 = 'NFTmallERC1155'

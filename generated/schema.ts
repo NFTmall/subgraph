@@ -675,22 +675,22 @@ export class Count extends Entity {
     this.set("orderTotal", Value.fromI32(value));
   }
 
-  get orderNFTmall721(): i32 {
-    let value = this.get("orderNFTmall721");
+  get orderNFTmallERC721(): i32 {
+    let value = this.get("orderNFTmallERC721");
     return value.toI32();
   }
 
-  set orderNFTmall721(value: i32) {
-    this.set("orderNFTmall721", Value.fromI32(value));
+  set orderNFTmallERC721(value: i32) {
+    this.set("orderNFTmallERC721", Value.fromI32(value));
   }
 
-  get nftmall721Total(): i32 {
-    let value = this.get("nftmall721Total");
+  get nftmallERC721Total(): i32 {
+    let value = this.get("nftmallERC721Total");
     return value.toI32();
   }
 
-  set nftmall721Total(value: i32) {
-    this.set("nftmall721Total", Value.fromI32(value));
+  set nftmallERC721Total(value: i32) {
+    this.set("nftmallERC721Total", Value.fromI32(value));
   }
 
   get started(): i32 {
@@ -703,7 +703,7 @@ export class Count extends Entity {
   }
 }
 
-export class NFTmall721 extends Entity {
+export class NFTmallERC721 extends Entity {
   constructor(id: string) {
     super();
     this.set("id", Value.fromString(id));
@@ -711,17 +711,17 @@ export class NFTmall721 extends Entity {
 
   save(): void {
     let id = this.get("id");
-    assert(id !== null, "Cannot save NFTmall721 entity without an ID");
+    assert(id !== null, "Cannot save NFTmallERC721 entity without an ID");
     assert(
       id.kind == ValueKind.STRING,
-      "Cannot save NFTmall721 entity with non-string ID. " +
+      "Cannot save NFTmallERC721 entity with non-string ID. " +
         'Considering using .toHex() to convert the "id" to a string.'
     );
-    store.set("NFTmall721", id.toString(), this);
+    store.set("NFTmallERC721", id.toString(), this);
   }
 
-  static load(id: string): NFTmall721 | null {
-    return store.get("NFTmall721", id) as NFTmall721 | null;
+  static load(id: string): NFTmallERC721 | null {
+    return store.get("NFTmallERC721", id) as NFTmallERC721 | null;
   }
 
   get id(): string {
@@ -980,8 +980,8 @@ export class NFT extends Entity {
     }
   }
 
-  get nftmall721(): string | null {
-    let value = this.get("nftmall721");
+  get nftmallERC721(): string | null {
+    let value = this.get("nftmallERC721");
     if (value === null || value.kind == ValueKind.NULL) {
       return null;
     } else {
@@ -989,11 +989,11 @@ export class NFT extends Entity {
     }
   }
 
-  set nftmall721(value: string | null) {
+  set nftmallERC721(value: string | null) {
     if (value === null) {
-      this.unset("nftmall721");
+      this.unset("nftmallERC721");
     } else {
-      this.set("nftmall721", Value.fromString(value as string));
+      this.set("nftmallERC721", Value.fromString(value as string));
     }
   }
 

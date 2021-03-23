@@ -166,7 +166,7 @@ export class Transfer__Params {
   }
 }
 
-export class NFTmall721__feesResult {
+export class NFTmallERC721__feesResult {
   value0: Address;
   value1: BigInt;
 
@@ -183,7 +183,7 @@ export class NFTmall721__feesResult {
   }
 }
 
-export class NFTmall721__getFeesResultValue0Struct extends ethereum.Tuple {
+export class NFTmallERC721__getFeesResultValue0Struct extends ethereum.Tuple {
   get account(): Address {
     return this[0].toAddress();
   }
@@ -193,9 +193,9 @@ export class NFTmall721__getFeesResultValue0Struct extends ethereum.Tuple {
   }
 }
 
-export class NFTmall721 extends ethereum.SmartContract {
-  static bind(address: Address): NFTmall721 {
-    return new NFTmall721("NFTmall721", address);
+export class NFTmallERC721 extends ethereum.SmartContract {
+  static bind(address: Address): NFTmallERC721 {
+    return new NFTmallERC721("NFTmallERC721", address);
   }
 
   balanceOf(owner: Address): BigInt {
@@ -247,13 +247,13 @@ export class NFTmall721 extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toString());
   }
 
-  fees(param0: BigInt, param1: BigInt): NFTmall721__feesResult {
+  fees(param0: BigInt, param1: BigInt): NFTmallERC721__feesResult {
     let result = super.call("fees", "fees(uint256,uint256):(address,uint256)", [
       ethereum.Value.fromUnsignedBigInt(param0),
       ethereum.Value.fromUnsignedBigInt(param1)
     ]);
 
-    return new NFTmall721__feesResult(
+    return new NFTmallERC721__feesResult(
       result[0].toAddress(),
       result[1].toBigInt()
     );
@@ -262,7 +262,7 @@ export class NFTmall721 extends ethereum.SmartContract {
   try_fees(
     param0: BigInt,
     param1: BigInt
-  ): ethereum.CallResult<NFTmall721__feesResult> {
+  ): ethereum.CallResult<NFTmallERC721__feesResult> {
     let result = super.tryCall(
       "fees",
       "fees(uint256,uint256):(address,uint256)",
@@ -276,7 +276,7 @@ export class NFTmall721 extends ethereum.SmartContract {
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(
-      new NFTmall721__feesResult(value[0].toAddress(), value[1].toBigInt())
+      new NFTmallERC721__feesResult(value[0].toAddress(), value[1].toBigInt())
     );
   }
 
@@ -322,19 +322,19 @@ export class NFTmall721 extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toAddressArray());
   }
 
-  getFees(id: BigInt): Array<NFTmall721__getFeesResultValue0Struct> {
+  getFees(id: BigInt): Array<NFTmallERC721__getFeesResultValue0Struct> {
     let result = super.call(
       "getFees",
       "getFees(uint256):((address,uint256)[])",
       [ethereum.Value.fromUnsignedBigInt(id)]
     );
 
-    return result[0].toTupleArray<NFTmall721__getFeesResultValue0Struct>();
+    return result[0].toTupleArray<NFTmallERC721__getFeesResultValue0Struct>();
   }
 
   try_getFees(
     id: BigInt
-  ): ethereum.CallResult<Array<NFTmall721__getFeesResultValue0Struct>> {
+  ): ethereum.CallResult<Array<NFTmallERC721__getFeesResultValue0Struct>> {
     let result = super.tryCall(
       "getFees",
       "getFees(uint256):((address,uint256)[])",
@@ -345,7 +345,7 @@ export class NFTmall721 extends ethereum.SmartContract {
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(
-      value[0].toTupleArray<NFTmall721__getFeesResultValue0Struct>()
+      value[0].toTupleArray<NFTmallERC721__getFeesResultValue0Struct>()
     );
   }
 

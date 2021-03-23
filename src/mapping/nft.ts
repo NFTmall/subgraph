@@ -1,6 +1,6 @@
 import { log } from "@graphprotocol/graph-ts";
 import { NFT, Count } from "../../generated/schema";
-import { NFTmall721, Transfer } from "../../generated/NFTmall721/NFTmall721";
+import { NFTmallERC721, Transfer } from "../../generated/NFTmallERC721/NFTmallERC721";
 // import * as status from '../order/status'
 import {
   isMint,
@@ -19,7 +19,7 @@ import { toLowerCase } from "../modules/utils";
 import * as categories from "../modules/category/categories";
 import * as addresses from "../data/addresses";
 // import * as status from '../modules/order/status'
-// import { buildNFTmall721FromNFT, getNFTmall721Image } from '../modules/legacynft'
+// import { buildNFTmallERC721FromNFT, getNFTmallERC721Image } from '../modules/legacynft'
 
 export function handleTransfer(event: Transfer): void {
   // log.warning('transfer params {} {} {}', [event.params.tokenId.toHexString(), event.params._from.toString(), event.params.to.toString()])
@@ -56,7 +56,7 @@ export function handleTransfer(event: Transfer): void {
     // nft.feeAccounts = a.feeAccounts
 
     // TODO: calc fees
-    // let erc721 = NFTmall721.bind(event.address);
+    // let erc721 = NFTmallERC721.bind(event.address);
     // let getFeesCallResult = erc721.try_getFees(event.params.tokenId);
     // for(let i = 0; getFeesCallResult.value.length; i++) {
     //   nft.fees.push(getFeesCallResult.value.[i].value)
@@ -71,12 +71,12 @@ export function handleTransfer(event: Transfer): void {
     //   }
     // }
 
-    // if (category == categories.NFTMALL721) {
-    //   let legacy = buildNFTmall721FromNFT(nft)
+    // if (category == categories.NFTMALLERC721) {
+    //   let legacy = buildNFTmallERC721FromNFT(nft)
     //   legacy.save()
     //   nft.name = 'Sample NFT #' + nft.tokenId.toString()
-    //   nft.image = getNFTmall721Image(nft.id)
-    //   nft.nftmall721 = legacy.id
+    //   nft.image = getNFTmallERC721Image(nft.id)
+    //   nft.nftmallERC721 = legacy.id
     // }
 
     let metric = buildCountFromNFT(nft);

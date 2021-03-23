@@ -1,6 +1,6 @@
 import { log, BigInt, Address } from "@graphprotocol/graph-ts";
 // import { Fee } from "../../../generated/schema";
-import { NFTmall721, Transfer } from "../../../generated/NFTmall721/NFTmall721";
+import { NFTmallERC721, Transfer } from "../../../generated/NFTmallERC721/NFTmallERC721";
 // import * as status from '../order/status'
 import * as addresses from "../../data/addresses";
 
@@ -18,7 +18,7 @@ export function getNFTId(
 }
 
 export function getTokenURI(event: Transfer): string {
-  let erc721 = NFTmall721.bind(event.address);
+  let erc721 = NFTmallERC721.bind(event.address);
   let tokenURICallResult = erc721.try_tokenURI(event.params.tokenId);
 
   let tokenURI = "";
@@ -38,7 +38,7 @@ export function getTokenURI(event: Transfer): string {
 // export function getFees(
 //   event: Transfer
 // ): Record<string, Address[] | BigInt[]> {
-//   let erc721 = NFTmall721.bind(event.address);
+//   let erc721 = NFTmallERC721.bind(event.address);
 //   let getFeesCallResult = erc721.try_getFees(event.params.tokenId);
 
 //   let fees;

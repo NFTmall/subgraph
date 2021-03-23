@@ -5,8 +5,8 @@ import * as addresses from '../../data/addresses'
 export function getCategory(contractAddress: string): string {
   let category = ''
 
-  if (contractAddress == addresses.NFTmall721) {
-    category = categories.NFTMALL721
+  if (contractAddress == addresses.NFTmallERC721) {
+    category = categories.NFTMALLERC721
   } else {
     log.warning('Contract address {} not being monitored', [contractAddress])
     category = contractAddress

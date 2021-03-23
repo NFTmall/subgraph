@@ -74,22 +74,22 @@ dataSources:
       file: ./src/mapping/ExchangeV1.ts
 
   - kind: ethereum/contract
-    name: NFTmall721
+    name: NFTmallERC721
     network: {{network}}
     source:
-      address: '{{address:NFTmall721}}'
-      abi: NFTmall721
-      startBlock: {{startBlock:NFTmall721}}
+      address: '{{address:NFTmallERC721}}'
+      abi: NFTmallERC721
+      startBlock: {{startBlock:NFTmallERC721}}
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.3
       language: wasm/assemblyscript
       file: ./src/mapping/nft.ts
       entities:
-        - NFTmall721
+        - NFTmallERC721
       abis:
-        - name: NFTmall721
-          file: ./abis/NFTmall721.json
+        - name: NFTmallERC721
+          file: ./abis/NFTmallERC721.json
       eventHandlers:
         - event: Transfer(indexed address,indexed address,indexed uint256)
           handler: handleTransfer

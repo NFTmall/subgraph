@@ -11,7 +11,7 @@ enum Network {
 }
 enum ContractName {
   GEMToken = 'GEMToken',
-  NFTmall721 = 'NFTmall721',
+  NFTmallERC721 = 'NFTmallERC721',
   MarketplaceProxy = 'MarketplaceProxy',
 }
 type ContractsResponse = Record<Network, Record<ContractName, string>>
@@ -19,17 +19,17 @@ type ContractsResponse = Record<Network, Record<ContractName, string>>
 const startBlockByNetwork: Record<Network, Record<ContractName, number>> = {
   [Network.MAINNET]: {
     GEMToken: 0,
-    NFTmall721: 0,
+    NFTmallERC721: 0,
     MarketplaceProxy: 0,
   },
   [Network.RINKEBY]: {
     GEMToken: 4804420, // https://rinkeby.etherscan.io/tx/0x717c61e7a758cb6fbe4bf76dea6713ae2ba85dac291c20b2cb64239a99f32d77
-    NFTmall721: 7644361, // https://rinkeby.etherscan.io/tx/0x8901d8e21d5c18ade19947263903a2d64c662a399ba78d53360b62a9fcb87492
+    NFTmallERC721: 7644361, // https://rinkeby.etherscan.io/tx/0x8901d8e21d5c18ade19947263903a2d64c662a399ba78d53360b62a9fcb87492
     MarketplaceProxy: 7669949, // https://rinkeby.etherscan.io/tx/0x92d1f2df928d2d9e9bffc09488cace59a3bceb957077849ceb952ca4a57479de
   },
   [Network.DEVELOPMENT]: {
     GEMToken: 0,
-    NFTmall721: 0,
+    NFTmallERC721: 0,
     MarketplaceProxy: 0,
   }
 }
@@ -92,17 +92,17 @@ class Ethereum {
     const contractsByNetwork: ContractsResponse = {
       "mainnet": {
         GEMToken: '0x8D05F69bd9E804EB467c7e1f2902Ecd5E41a72dA',
-        NFTmall721: '0xcc029DCC3a516E0f29fb8F89c2E6068BDD8D3fFa', // local ganache
+        NFTmallERC721: '0xF9F4F60610188D977866cf8A43e092d56D67E850', // local ganache
         MarketplaceProxy: '0xe1eb03f2163F4A713e5dFbC59f36E98Ca3770BA2',
       },
       "rinkeby": {
         GEMToken: '0x8D05F69bd9E804EB467c7e1f2902Ecd5E41a72dA',
-        NFTmall721: '0xec167ad28c74af5c0767ff8f537c49709427cf66',
+        NFTmallERC721: '0xec167ad28c74af5c0767ff8f537c49709427cf66',
         MarketplaceProxy: '0xe1eb03f2163F4A713e5dFbC59f36E98Ca3770BA2',
       },
       "development": {
         GEMToken: '0x8D05F69bd9E804EB467c7e1f2902Ecd5E41a72dA',
-        NFTmall721: '0xcc029DCC3a516E0f29fb8F89c2E6068BDD8D3fFa', // local ganache
+        NFTmallERC721: '0xF9F4F60610188D977866cf8A43e092d56D67E850', // local ganache
         MarketplaceProxy: '0xe1eb03f2163F4A713e5dFbC59f36E98Ca3770BA2',
       },
     }

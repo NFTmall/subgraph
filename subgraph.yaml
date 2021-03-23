@@ -74,11 +74,11 @@ dataSources:
       file: ./src/mapping/ExchangeV1.ts
 
   - kind: ethereum/contract
-    name: NFTmall721
+    name: NFTmallERC721
     network: mainnet
     source:
-      address: '0xcc029DCC3a516E0f29fb8F89c2E6068BDD8D3fFa'
-      abi: NFTmall721
+      address: '0xF9F4F60610188D977866cf8A43e092d56D67E850'
+      abi: NFTmallERC721
       startBlock: 0
     mapping:
       kind: ethereum/events
@@ -86,10 +86,10 @@ dataSources:
       language: wasm/assemblyscript
       file: ./src/mapping/nft.ts
       entities:
-        - NFTmall721
+        - NFTmallERC721
       abis:
-        - name: NFTmall721
-          file: ./abis/NFTmall721.json
+        - name: NFTmallERC721
+          file: ./abis/NFTmallERC721.json
       eventHandlers:
         - event: Transfer(indexed address,indexed address,indexed uint256)
           handler: handleTransfer
