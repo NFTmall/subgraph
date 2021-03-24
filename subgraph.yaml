@@ -1,6 +1,6 @@
 specVersion: 0.0.2
-description: Blockchain indexer for NM
-repository: https://github.com/captainheart/subgraph
+description: Blockchain indexer for NFTmall
+repository: https://github.com/NFTmall/subgraph-bsc
 schema:
   file: ./schema.graphql
 dataSources:
@@ -10,7 +10,7 @@ dataSources:
     source:
       address: '0x9cA317f9Cdb10a144f458B08ACDA11Fc53768CF0'
       abi: NFTmallERC721
-      startBlock: 0
+      startBlock: 7248045
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4

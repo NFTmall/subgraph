@@ -4,9 +4,9 @@
   "scripts": {
     "codegen": "graph codegen",
     "build": "graph build",
-    "create-local": "graph create --node http://localhost:8020/ captainheart/subgraph-bsctest",
-    "remove-local": "graph remove --node http://localhost:8020/ captainheart/subgraph-bsctest",
-    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 captainheart/subgraph-bsctest",
+    "create-local": "graph create --node http://localhost:8020/ NFTmall/subgraph-bsc",
+    "remove-local": "graph remove --node http://localhost:8020/ NFTmall/subgraph-bsc",
+    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 NFTmall/subgraph-bsc",
     "build-data": "ts-node ./scripts/buildData.ts",
     "deploy": "ts-node ./scripts/deploy.ts"
   },

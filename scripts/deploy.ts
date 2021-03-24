@@ -6,9 +6,9 @@ enum Network {
 }
 
 const graphByNetwork: Record<Network, string> = {
-  [Network.MAINNET]: process.env.GRAPH_NAME || 'captainheart/nm-subgraph-bsct',
+  [Network.MAINNET]: process.env.GRAPH_NAME || 'NFTmall/subgraph-bsc',
   [Network.BSCTESTNET]:
-    process.env.GRAPH_NAME || 'captainheart/nm-subgraph-bsct'
+    process.env.GRAPH_NAME || 'NFTmall/subgraph-bsc'
 }
 
 // TODO: Handle ctrl+C

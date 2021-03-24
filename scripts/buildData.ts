@@ -23,9 +23,9 @@ const startBlockByNetwork: Record<Network, Record<ContractName, number>> = {
     MarketplaceProxy: 0,
   },
   [Network.BSCTESTNET]: {
-    GEMToken: 0, // https://rinkeby.etherscan.io/tx/0x717c61e7a758cb6fbe4bf76dea6713ae2ba85dac291c20b2cb64239a99f32d77
-    NFTmallERC721: 0, // https://rinkeby.etherscan.io/tx/0x8901d8e21d5c18ade19947263903a2d64c662a399ba78d53360b62a9fcb87492
-    MarketplaceProxy: 0, // https://rinkeby.etherscan.io/tx/0x92d1f2df928d2d9e9bffc09488cace59a3bceb957077849ceb952ca4a57479de
+    GEMToken: 7248045,
+    NFTmallERC721: 7248045,
+    MarketplaceProxy: 7248045,
   },
   [Network.DEVELOPMENT]: {
     GEMToken: 0,
