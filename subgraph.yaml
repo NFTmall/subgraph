@@ -6,9 +6,9 @@ schema:
 dataSources:
   - kind: ethereum/contract
     name: NFTmallERC721
-    network: mainnet
+    network: bsctestnet
     source:
-      address: '0xF9F4F60610188D977866cf8A43e092d56D67E850'
+      address: '0x9cA317f9Cdb10a144f458B08ACDA11Fc53768CF0'
       abi: NFTmallERC721
       startBlock: 0
     mapping:
@@ -27,7 +27,7 @@ dataSources:
 
   # - kind: ethereum/contract
   #   name: TokenSale
-  #   network: mainnet
+  #   network: bsctestnet
   #   source:
   #     address: '0x0000000000000000000000000000000000000000'
   #     abi: TokenSale
@@ -50,7 +50,7 @@ dataSources:
 
   # - kind: ethereum/contract
   #   name: ERC721SaleV2
-  #   network: mainnet
+  #   network: bsctestnet
   #   source:
   #     address: '0x0000000000000000000000000000000000000000'
   #     abi: ERC721SaleV2
@@ -73,7 +73,7 @@ dataSources:
 
   # - kind: ethereum/contract
   #   name: ExchangeV1
-  #   network: mainnet
+  #   network: bsctestnet
   #   source:
   #     address: '0x0000000000000000000000000000000000000000'
   #     abi: ExchangeV1

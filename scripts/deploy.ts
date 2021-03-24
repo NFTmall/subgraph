@@ -2,13 +2,13 @@ import { spawn, SpawnOptions } from 'child_process'
 
 enum Network {
   MAINNET = 'mainnet',
-  RINKEBY = 'rinkeby'
+  BSCTESTNET = 'bsctestnet'
 }
 
 const graphByNetwork: Record<Network, string> = {
-  [Network.MAINNET]: process.env.GRAPH_NAME || 'NFTmall/subgraph',
-  [Network.RINKEBY]:
-    process.env.GRAPH_NAME || 'NFTmall/subgraph-rinkeby'
+  [Network.MAINNET]: process.env.GRAPH_NAME || 'captainheart/nm-subgraph-bsct',
+  [Network.BSCTESTNET]:
+    process.env.GRAPH_NAME || 'captainheart/nm-subgraph-bsct'
 }
 
 // TODO: Handle ctrl+C

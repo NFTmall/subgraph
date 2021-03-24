@@ -6,7 +6,7 @@ import * as path from 'path'
 enum Network {
   MAINNET = 'mainnet',
   // ROPSTEN = 'ropsten',
-  RINKEBY = 'rinkeby',
+  BSCTESTNET = 'bsctestnet',
   DEVELOPMENT = 'development',
 }
 enum ContractName {
@@ -22,10 +22,10 @@ const startBlockByNetwork: Record<Network, Record<ContractName, number>> = {
     NFTmallERC721: 0,
     MarketplaceProxy: 0,
   },
-  [Network.RINKEBY]: {
-    GEMToken: 4804420, // https://rinkeby.etherscan.io/tx/0x717c61e7a758cb6fbe4bf76dea6713ae2ba85dac291c20b2cb64239a99f32d77
-    NFTmallERC721: 7644361, // https://rinkeby.etherscan.io/tx/0x8901d8e21d5c18ade19947263903a2d64c662a399ba78d53360b62a9fcb87492
-    MarketplaceProxy: 7669949, // https://rinkeby.etherscan.io/tx/0x92d1f2df928d2d9e9bffc09488cace59a3bceb957077849ceb952ca4a57479de
+  [Network.BSCTESTNET]: {
+    GEMToken: 0, // https://rinkeby.etherscan.io/tx/0x717c61e7a758cb6fbe4bf76dea6713ae2ba85dac291c20b2cb64239a99f32d77
+    NFTmallERC721: 0, // https://rinkeby.etherscan.io/tx/0x8901d8e21d5c18ade19947263903a2d64c662a399ba78d53360b62a9fcb87492
+    MarketplaceProxy: 0, // https://rinkeby.etherscan.io/tx/0x92d1f2df928d2d9e9bffc09488cace59a3bceb957077849ceb952ca4a57479de
   },
   [Network.DEVELOPMENT]: {
     GEMToken: 0,
@@ -95,10 +95,10 @@ class Ethereum {
         NFTmallERC721: '0xF9F4F60610188D977866cf8A43e092d56D67E850', // local ganache
         MarketplaceProxy: '0xe1eb03f2163F4A713e5dFbC59f36E98Ca3770BA2',
       },
-      "rinkeby": {
-        GEMToken: '0x8D05F69bd9E804EB467c7e1f2902Ecd5E41a72dA',
-        NFTmallERC721: '0xec167ad28c74af5c0767ff8f537c49709427cf66',
-        MarketplaceProxy: '0xe1eb03f2163F4A713e5dFbC59f36E98Ca3770BA2',
+      "bsctestnet": {
+        GEMToken: '0x2d25AdF1D54d59B68eC2DDc0659D4c791a09cecE',
+        NFTmallERC721: '0x9cA317f9Cdb10a144f458B08ACDA11Fc53768CF0',
+        MarketplaceProxy: '0x68a2d02b51799b44D7C3F0fA1fE00abb74572eD9',
       },
       "development": {
         GEMToken: '0x8D05F69bd9E804EB467c7e1f2902Ecd5E41a72dA',
