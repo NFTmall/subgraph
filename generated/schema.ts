@@ -12,780 +12,6 @@ import {
   BigDecimal
 } from "@graphprotocol/graph-ts";
 
-export class Block extends Entity {
-  constructor(id: string) {
-    super();
-    this.set("id", Value.fromString(id));
-  }
-
-  save(): void {
-    let id = this.get("id");
-    assert(id !== null, "Cannot save Block entity without an ID");
-    assert(
-      id.kind == ValueKind.STRING,
-      "Cannot save Block entity with non-string ID. " +
-        'Considering using .toHex() to convert the "id" to a string.'
-    );
-    store.set("Block", id.toString(), this);
-  }
-
-  static load(id: string): Block | null {
-    return store.get("Block", id) as Block | null;
-  }
-
-  get id(): string {
-    let value = this.get("id");
-    return value.toString();
-  }
-
-  set id(value: string) {
-    this.set("id", Value.fromString(value));
-  }
-
-  get number(): BigInt | null {
-    let value = this.get("number");
-    if (value === null || value.kind == ValueKind.NULL) {
-      return null;
-    } else {
-      return value.toBigInt();
-    }
-  }
-
-  set number(value: BigInt | null) {
-    if (value === null) {
-      this.unset("number");
-    } else {
-      this.set("number", Value.fromBigInt(value as BigInt));
-    }
-  }
-
-  get time(): BigInt | null {
-    let value = this.get("time");
-    if (value === null || value.kind == ValueKind.NULL) {
-      return null;
-    } else {
-      return value.toBigInt();
-    }
-  }
-
-  set time(value: BigInt | null) {
-    if (value === null) {
-      this.unset("time");
-    } else {
-      this.set("time", Value.fromBigInt(value as BigInt));
-    }
-  }
-}
-
-export class Deal extends Entity {
-  constructor(id: string) {
-    super();
-    this.set("id", Value.fromString(id));
-  }
-
-  save(): void {
-    let id = this.get("id");
-    assert(id !== null, "Cannot save Deal entity without an ID");
-    assert(
-      id.kind == ValueKind.STRING,
-      "Cannot save Deal entity with non-string ID. " +
-        'Considering using .toHex() to convert the "id" to a string.'
-    );
-    store.set("Deal", id.toString(), this);
-  }
-
-  static load(id: string): Deal | null {
-    return store.get("Deal", id) as Deal | null;
-  }
-
-  get id(): string {
-    let value = this.get("id");
-    return value.toString();
-  }
-
-  set id(value: string) {
-    this.set("id", Value.fromString(value));
-  }
-
-  get type(): string {
-    let value = this.get("type");
-    return value.toString();
-  }
-
-  set type(value: string) {
-    this.set("type", Value.fromString(value));
-  }
-
-  get seller(): Bytes {
-    let value = this.get("seller");
-    return value.toBytes();
-  }
-
-  set seller(value: Bytes) {
-    this.set("seller", Value.fromBytes(value));
-  }
-
-  get buyer(): Bytes {
-    let value = this.get("buyer");
-    return value.toBytes();
-  }
-
-  set buyer(value: Bytes) {
-    this.set("buyer", Value.fromBytes(value));
-  }
-
-  get sellTokenId(): BigInt {
-    let value = this.get("sellTokenId");
-    return value.toBigInt();
-  }
-
-  set sellTokenId(value: BigInt) {
-    this.set("sellTokenId", Value.fromBigInt(value));
-  }
-
-  get sellToken(): Bytes {
-    let value = this.get("sellToken");
-    return value.toBytes();
-  }
-
-  set sellToken(value: Bytes) {
-    this.set("sellToken", Value.fromBytes(value));
-  }
-
-  get buyToken(): Bytes {
-    let value = this.get("buyToken");
-    return value.toBytes();
-  }
-
-  set buyToken(value: Bytes) {
-    this.set("buyToken", Value.fromBytes(value));
-  }
-
-  get sellAmount(): BigInt {
-    let value = this.get("sellAmount");
-    return value.toBigInt();
-  }
-
-  set sellAmount(value: BigInt) {
-    this.set("sellAmount", Value.fromBigInt(value));
-  }
-
-  get buyAmount(): BigInt {
-    let value = this.get("buyAmount");
-    return value.toBigInt();
-  }
-
-  set buyAmount(value: BigInt) {
-    this.set("buyAmount", Value.fromBigInt(value));
-  }
-
-  get price(): BigInt {
-    let value = this.get("price");
-    return value.toBigInt();
-  }
-
-  set price(value: BigInt) {
-    this.set("price", Value.fromBigInt(value));
-  }
-
-  get fee(): BigDecimal {
-    let value = this.get("fee");
-    return value.toBigDecimal();
-  }
-
-  set fee(value: BigDecimal) {
-    this.set("fee", Value.fromBigDecimal(value));
-  }
-
-  get txHash(): Bytes {
-    let value = this.get("txHash");
-    return value.toBytes();
-  }
-
-  set txHash(value: Bytes) {
-    this.set("txHash", Value.fromBytes(value));
-  }
-
-  get blockNumber(): BigInt {
-    let value = this.get("blockNumber");
-    return value.toBigInt();
-  }
-
-  set blockNumber(value: BigInt) {
-    this.set("blockNumber", Value.fromBigInt(value));
-  }
-
-  get blockTime(): BigInt {
-    let value = this.get("blockTime");
-    return value.toBigInt();
-  }
-
-  set blockTime(value: BigInt) {
-    this.set("blockTime", Value.fromBigInt(value));
-  }
-
-  get contract(): string {
-    let value = this.get("contract");
-    return value.toString();
-  }
-
-  set contract(value: string) {
-    this.set("contract", Value.fromString(value));
-  }
-}
-
-export class Counter extends Entity {
-  constructor(id: string) {
-    super();
-    this.set("id", Value.fromString(id));
-  }
-
-  save(): void {
-    let id = this.get("id");
-    assert(id !== null, "Cannot save Counter entity without an ID");
-    assert(
-      id.kind == ValueKind.STRING,
-      "Cannot save Counter entity with non-string ID. " +
-        'Considering using .toHex() to convert the "id" to a string.'
-    );
-    store.set("Counter", id.toString(), this);
-  }
-
-  static load(id: string): Counter | null {
-    return store.get("Counter", id) as Counter | null;
-  }
-
-  get id(): string {
-    let value = this.get("id");
-    return value.toString();
-  }
-
-  set id(value: string) {
-    this.set("id", Value.fromString(value));
-  }
-
-  get count(): BigInt {
-    let value = this.get("count");
-    return value.toBigInt();
-  }
-
-  set count(value: BigInt) {
-    this.set("count", Value.fromBigInt(value));
-  }
-
-  get firstBlock(): string {
-    let value = this.get("firstBlock");
-    return value.toString();
-  }
-
-  set firstBlock(value: string) {
-    this.set("firstBlock", Value.fromString(value));
-  }
-
-  get lastBlock(): string {
-    let value = this.get("lastBlock");
-    return value.toString();
-  }
-
-  set lastBlock(value: string) {
-    this.set("lastBlock", Value.fromString(value));
-  }
-
-  get contract(): string {
-    let value = this.get("contract");
-    return value.toString();
-  }
-
-  set contract(value: string) {
-    this.set("contract", Value.fromString(value));
-  }
-}
-
-export class Order extends Entity {
-  constructor(id: string) {
-    super();
-    this.set("id", Value.fromString(id));
-  }
-
-  save(): void {
-    let id = this.get("id");
-    assert(id !== null, "Cannot save Order entity without an ID");
-    assert(
-      id.kind == ValueKind.STRING,
-      "Cannot save Order entity with non-string ID. " +
-        'Considering using .toHex() to convert the "id" to a string.'
-    );
-    store.set("Order", id.toString(), this);
-  }
-
-  static load(id: string): Order | null {
-    return store.get("Order", id) as Order | null;
-  }
-
-  get id(): string {
-    let value = this.get("id");
-    return value.toString();
-  }
-
-  set id(value: string) {
-    this.set("id", Value.fromString(value));
-  }
-
-  get category(): string {
-    let value = this.get("category");
-    return value.toString();
-  }
-
-  set category(value: string) {
-    this.set("category", Value.fromString(value));
-  }
-
-  get nft(): string | null {
-    let value = this.get("nft");
-    if (value === null || value.kind == ValueKind.NULL) {
-      return null;
-    } else {
-      return value.toString();
-    }
-  }
-
-  set nft(value: string | null) {
-    if (value === null) {
-      this.unset("nft");
-    } else {
-      this.set("nft", Value.fromString(value as string));
-    }
-  }
-
-  get nftAddress(): Bytes {
-    let value = this.get("nftAddress");
-    return value.toBytes();
-  }
-
-  set nftAddress(value: Bytes) {
-    this.set("nftAddress", Value.fromBytes(value));
-  }
-
-  get txHash(): Bytes {
-    let value = this.get("txHash");
-    return value.toBytes();
-  }
-
-  set txHash(value: Bytes) {
-    this.set("txHash", Value.fromBytes(value));
-  }
-
-  get owner(): Bytes {
-    let value = this.get("owner");
-    return value.toBytes();
-  }
-
-  set owner(value: Bytes) {
-    this.set("owner", Value.fromBytes(value));
-  }
-
-  get buyer(): Bytes | null {
-    let value = this.get("buyer");
-    if (value === null || value.kind == ValueKind.NULL) {
-      return null;
-    } else {
-      return value.toBytes();
-    }
-  }
-
-  set buyer(value: Bytes | null) {
-    if (value === null) {
-      this.unset("buyer");
-    } else {
-      this.set("buyer", Value.fromBytes(value as Bytes));
-    }
-  }
-
-  get price(): BigInt {
-    let value = this.get("price");
-    return value.toBigInt();
-  }
-
-  set price(value: BigInt) {
-    this.set("price", Value.fromBigInt(value));
-  }
-
-  get status(): string {
-    let value = this.get("status");
-    return value.toString();
-  }
-
-  set status(value: string) {
-    this.set("status", Value.fromString(value));
-  }
-
-  get blockNumber(): BigInt {
-    let value = this.get("blockNumber");
-    return value.toBigInt();
-  }
-
-  set blockNumber(value: BigInt) {
-    this.set("blockNumber", Value.fromBigInt(value));
-  }
-
-  get expiresAt(): BigInt {
-    let value = this.get("expiresAt");
-    return value.toBigInt();
-  }
-
-  set expiresAt(value: BigInt) {
-    this.set("expiresAt", Value.fromBigInt(value));
-  }
-
-  get createdAt(): BigInt {
-    let value = this.get("createdAt");
-    return value.toBigInt();
-  }
-
-  set createdAt(value: BigInt) {
-    this.set("createdAt", Value.fromBigInt(value));
-  }
-
-  get updatedAt(): BigInt {
-    let value = this.get("updatedAt");
-    return value.toBigInt();
-  }
-
-  set updatedAt(value: BigInt) {
-    this.set("updatedAt", Value.fromBigInt(value));
-  }
-}
-
-export class Bid extends Entity {
-  constructor(id: string) {
-    super();
-    this.set("id", Value.fromString(id));
-  }
-
-  save(): void {
-    let id = this.get("id");
-    assert(id !== null, "Cannot save Bid entity without an ID");
-    assert(
-      id.kind == ValueKind.STRING,
-      "Cannot save Bid entity with non-string ID. " +
-        'Considering using .toHex() to convert the "id" to a string.'
-    );
-    store.set("Bid", id.toString(), this);
-  }
-
-  static load(id: string): Bid | null {
-    return store.get("Bid", id) as Bid | null;
-  }
-
-  get id(): string {
-    let value = this.get("id");
-    return value.toString();
-  }
-
-  set id(value: string) {
-    this.set("id", Value.fromString(value));
-  }
-
-  get category(): string {
-    let value = this.get("category");
-    return value.toString();
-  }
-
-  set category(value: string) {
-    this.set("category", Value.fromString(value));
-  }
-
-  get nft(): string | null {
-    let value = this.get("nft");
-    if (value === null || value.kind == ValueKind.NULL) {
-      return null;
-    } else {
-      return value.toString();
-    }
-  }
-
-  set nft(value: string | null) {
-    if (value === null) {
-      this.unset("nft");
-    } else {
-      this.set("nft", Value.fromString(value as string));
-    }
-  }
-
-  get nftAddress(): Bytes {
-    let value = this.get("nftAddress");
-    return value.toBytes();
-  }
-
-  set nftAddress(value: Bytes) {
-    this.set("nftAddress", Value.fromBytes(value));
-  }
-
-  get bidder(): Bytes | null {
-    let value = this.get("bidder");
-    if (value === null || value.kind == ValueKind.NULL) {
-      return null;
-    } else {
-      return value.toBytes();
-    }
-  }
-
-  set bidder(value: Bytes | null) {
-    if (value === null) {
-      this.unset("bidder");
-    } else {
-      this.set("bidder", Value.fromBytes(value as Bytes));
-    }
-  }
-
-  get seller(): Bytes | null {
-    let value = this.get("seller");
-    if (value === null || value.kind == ValueKind.NULL) {
-      return null;
-    } else {
-      return value.toBytes();
-    }
-  }
-
-  set seller(value: Bytes | null) {
-    if (value === null) {
-      this.unset("seller");
-    } else {
-      this.set("seller", Value.fromBytes(value as Bytes));
-    }
-  }
-
-  get price(): BigInt {
-    let value = this.get("price");
-    return value.toBigInt();
-  }
-
-  set price(value: BigInt) {
-    this.set("price", Value.fromBigInt(value));
-  }
-
-  get fingerprint(): Bytes | null {
-    let value = this.get("fingerprint");
-    if (value === null || value.kind == ValueKind.NULL) {
-      return null;
-    } else {
-      return value.toBytes();
-    }
-  }
-
-  set fingerprint(value: Bytes | null) {
-    if (value === null) {
-      this.unset("fingerprint");
-    } else {
-      this.set("fingerprint", Value.fromBytes(value as Bytes));
-    }
-  }
-
-  get status(): string {
-    let value = this.get("status");
-    return value.toString();
-  }
-
-  set status(value: string) {
-    this.set("status", Value.fromString(value));
-  }
-
-  get blockchainId(): string {
-    let value = this.get("blockchainId");
-    return value.toString();
-  }
-
-  set blockchainId(value: string) {
-    this.set("blockchainId", Value.fromString(value));
-  }
-
-  get blockNumber(): BigInt {
-    let value = this.get("blockNumber");
-    return value.toBigInt();
-  }
-
-  set blockNumber(value: BigInt) {
-    this.set("blockNumber", Value.fromBigInt(value));
-  }
-
-  get expiresAt(): BigInt {
-    let value = this.get("expiresAt");
-    return value.toBigInt();
-  }
-
-  set expiresAt(value: BigInt) {
-    this.set("expiresAt", Value.fromBigInt(value));
-  }
-
-  get createdAt(): BigInt {
-    let value = this.get("createdAt");
-    return value.toBigInt();
-  }
-
-  set createdAt(value: BigInt) {
-    this.set("createdAt", Value.fromBigInt(value));
-  }
-
-  get updatedAt(): BigInt {
-    let value = this.get("updatedAt");
-    return value.toBigInt();
-  }
-
-  set updatedAt(value: BigInt) {
-    this.set("updatedAt", Value.fromBigInt(value));
-  }
-}
-
-export class Count extends Entity {
-  constructor(id: string) {
-    super();
-    this.set("id", Value.fromString(id));
-  }
-
-  save(): void {
-    let id = this.get("id");
-    assert(id !== null, "Cannot save Count entity without an ID");
-    assert(
-      id.kind == ValueKind.STRING,
-      "Cannot save Count entity with non-string ID. " +
-        'Considering using .toHex() to convert the "id" to a string.'
-    );
-    store.set("Count", id.toString(), this);
-  }
-
-  static load(id: string): Count | null {
-    return store.get("Count", id) as Count | null;
-  }
-
-  get id(): string {
-    let value = this.get("id");
-    return value.toString();
-  }
-
-  set id(value: string) {
-    this.set("id", Value.fromString(value));
-  }
-
-  get orderTotal(): i32 {
-    let value = this.get("orderTotal");
-    return value.toI32();
-  }
-
-  set orderTotal(value: i32) {
-    this.set("orderTotal", Value.fromI32(value));
-  }
-
-  get orderNFTmallERC721(): i32 {
-    let value = this.get("orderNFTmallERC721");
-    return value.toI32();
-  }
-
-  set orderNFTmallERC721(value: i32) {
-    this.set("orderNFTmallERC721", Value.fromI32(value));
-  }
-
-  get nftmallERC721Total(): i32 {
-    let value = this.get("nftmallERC721Total");
-    return value.toI32();
-  }
-
-  set nftmallERC721Total(value: i32) {
-    this.set("nftmallERC721Total", Value.fromI32(value));
-  }
-
-  get started(): i32 {
-    let value = this.get("started");
-    return value.toI32();
-  }
-
-  set started(value: i32) {
-    this.set("started", Value.fromI32(value));
-  }
-}
-
-export class NFTmallERC721 extends Entity {
-  constructor(id: string) {
-    super();
-    this.set("id", Value.fromString(id));
-  }
-
-  save(): void {
-    let id = this.get("id");
-    assert(id !== null, "Cannot save NFTmallERC721 entity without an ID");
-    assert(
-      id.kind == ValueKind.STRING,
-      "Cannot save NFTmallERC721 entity with non-string ID. " +
-        'Considering using .toHex() to convert the "id" to a string.'
-    );
-    store.set("NFTmallERC721", id.toString(), this);
-  }
-
-  static load(id: string): NFTmallERC721 | null {
-    return store.get("NFTmallERC721", id) as NFTmallERC721 | null;
-  }
-
-  get id(): string {
-    let value = this.get("id");
-    return value.toString();
-  }
-
-  set id(value: string) {
-    this.set("id", Value.fromString(value));
-  }
-
-  get owner(): string {
-    let value = this.get("owner");
-    return value.toString();
-  }
-
-  set owner(value: string) {
-    this.set("owner", Value.fromString(value));
-  }
-
-  get description(): string | null {
-    let value = this.get("description");
-    if (value === null || value.kind == ValueKind.NULL) {
-      return null;
-    } else {
-      return value.toString();
-    }
-  }
-
-  set description(value: string | null) {
-    if (value === null) {
-      this.unset("description");
-    } else {
-      this.set("description", Value.fromString(value as string));
-    }
-  }
-
-  get generation(): i32 {
-    let value = this.get("generation");
-    return value.toI32();
-  }
-
-  set generation(value: i32) {
-    this.set("generation", Value.fromI32(value));
-  }
-
-  get nft(): string | null {
-    let value = this.get("nft");
-    if (value === null || value.kind == ValueKind.NULL) {
-      return null;
-    } else {
-      return value.toString();
-    }
-  }
-
-  set nft(value: string | null) {
-    if (value === null) {
-      this.unset("nft");
-    } else {
-      this.set("nft", Value.fromString(value as string));
-    }
-  }
-}
-
 export class NFT extends Entity {
   constructor(id: string) {
     super();
@@ -861,23 +87,6 @@ export class NFT extends Entity {
     this.set("creator", Value.fromString(value));
   }
 
-  get creators(): Array<string> | null {
-    let value = this.get("creators");
-    if (value === null || value.kind == ValueKind.NULL) {
-      return null;
-    } else {
-      return value.toStringArray();
-    }
-  }
-
-  set creators(value: Array<string> | null) {
-    if (value === null) {
-      this.unset("creators");
-    } else {
-      this.set("creators", Value.fromStringArray(value as Array<string>));
-    }
-  }
-
   get tokenURI(): string | null {
     let value = this.get("tokenURI");
     if (value === null || value.kind == ValueKind.NULL) {
@@ -892,108 +101,6 @@ export class NFT extends Entity {
       this.unset("tokenURI");
     } else {
       this.set("tokenURI", Value.fromString(value as string));
-    }
-  }
-
-  get orders(): Array<string> | null {
-    let value = this.get("orders");
-    if (value === null || value.kind == ValueKind.NULL) {
-      return null;
-    } else {
-      return value.toStringArray();
-    }
-  }
-
-  set orders(value: Array<string> | null) {
-    if (value === null) {
-      this.unset("orders");
-    } else {
-      this.set("orders", Value.fromStringArray(value as Array<string>));
-    }
-  }
-
-  get bids(): Array<string> | null {
-    let value = this.get("bids");
-    if (value === null || value.kind == ValueKind.NULL) {
-      return null;
-    } else {
-      return value.toStringArray();
-    }
-  }
-
-  set bids(value: Array<string> | null) {
-    if (value === null) {
-      this.unset("bids");
-    } else {
-      this.set("bids", Value.fromStringArray(value as Array<string>));
-    }
-  }
-
-  get activeOrder(): string | null {
-    let value = this.get("activeOrder");
-    if (value === null || value.kind == ValueKind.NULL) {
-      return null;
-    } else {
-      return value.toString();
-    }
-  }
-
-  set activeOrder(value: string | null) {
-    if (value === null) {
-      this.unset("activeOrder");
-    } else {
-      this.set("activeOrder", Value.fromString(value as string));
-    }
-  }
-
-  get name(): string | null {
-    let value = this.get("name");
-    if (value === null || value.kind == ValueKind.NULL) {
-      return null;
-    } else {
-      return value.toString();
-    }
-  }
-
-  set name(value: string | null) {
-    if (value === null) {
-      this.unset("name");
-    } else {
-      this.set("name", Value.fromString(value as string));
-    }
-  }
-
-  get image(): string | null {
-    let value = this.get("image");
-    if (value === null || value.kind == ValueKind.NULL) {
-      return null;
-    } else {
-      return value.toString();
-    }
-  }
-
-  set image(value: string | null) {
-    if (value === null) {
-      this.unset("image");
-    } else {
-      this.set("image", Value.fromString(value as string));
-    }
-  }
-
-  get nftmallERC721(): string | null {
-    let value = this.get("nftmallERC721");
-    if (value === null || value.kind == ValueKind.NULL) {
-      return null;
-    } else {
-      return value.toString();
-    }
-  }
-
-  set nftmallERC721(value: string | null) {
-    if (value === null) {
-      this.unset("nftmallERC721");
-    } else {
-      this.set("nftmallERC721", Value.fromString(value as string));
     }
   }
 
@@ -1055,8 +162,8 @@ export class Account extends Entity {
     this.set("address", Value.fromBytes(value));
   }
 
-  get nfts(): Array<string> | null {
-    let value = this.get("nfts");
+  get ownedNFTs(): Array<string> | null {
+    let value = this.get("ownedNFTs");
     if (value === null || value.kind == ValueKind.NULL) {
       return null;
     } else {
@@ -1064,16 +171,16 @@ export class Account extends Entity {
     }
   }
 
-  set nfts(value: Array<string> | null) {
+  set ownedNFTs(value: Array<string> | null) {
     if (value === null) {
-      this.unset("nfts");
+      this.unset("ownedNFTs");
     } else {
-      this.set("nfts", Value.fromStringArray(value as Array<string>));
+      this.set("ownedNFTs", Value.fromStringArray(value as Array<string>));
     }
   }
 
-  get createdNfts(): Array<string> | null {
-    let value = this.get("createdNfts");
+  get createdNFTs(): Array<string> | null {
+    let value = this.get("createdNFTs");
     if (value === null || value.kind == ValueKind.NULL) {
       return null;
     } else {
@@ -1081,11 +188,11 @@ export class Account extends Entity {
     }
   }
 
-  set createdNfts(value: Array<string> | null) {
+  set createdNFTs(value: Array<string> | null) {
     if (value === null) {
-      this.unset("createdNfts");
+      this.unset("createdNFTs");
     } else {
-      this.set("createdNfts", Value.fromStringArray(value as Array<string>));
+      this.set("createdNFTs", Value.fromStringArray(value as Array<string>));
     }
   }
 
@@ -1104,5 +211,72 @@ export class Account extends Entity {
     } else {
       this.set("gem", Value.fromBigInt(value as BigInt));
     }
+  }
+}
+
+export class Count extends Entity {
+  constructor(id: string) {
+    super();
+    this.set("id", Value.fromString(id));
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id !== null, "Cannot save Count entity without an ID");
+    assert(
+      id.kind == ValueKind.STRING,
+      "Cannot save Count entity with non-string ID. " +
+        'Considering using .toHex() to convert the "id" to a string.'
+    );
+    store.set("Count", id.toString(), this);
+  }
+
+  static load(id: string): Count | null {
+    return store.get("Count", id) as Count | null;
+  }
+
+  get id(): string {
+    let value = this.get("id");
+    return value.toString();
+  }
+
+  set id(value: string) {
+    this.set("id", Value.fromString(value));
+  }
+
+  get orderTotal(): i32 {
+    let value = this.get("orderTotal");
+    return value.toI32();
+  }
+
+  set orderTotal(value: i32) {
+    this.set("orderTotal", Value.fromI32(value));
+  }
+
+  get orderNFTmallERC721(): i32 {
+    let value = this.get("orderNFTmallERC721");
+    return value.toI32();
+  }
+
+  set orderNFTmallERC721(value: i32) {
+    this.set("orderNFTmallERC721", Value.fromI32(value));
+  }
+
+  get nftmallERC721Total(): i32 {
+    let value = this.get("nftmallERC721Total");
+    return value.toI32();
+  }
+
+  set nftmallERC721Total(value: i32) {
+    this.set("nftmallERC721Total", Value.fromI32(value));
+  }
+
+  get started(): i32 {
+    let value = this.get("started");
+    return value.toI32();
+  }
+
+  set started(value: i32) {
+    this.set("started", Value.fromI32(value));
   }
 }

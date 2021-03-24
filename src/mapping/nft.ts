@@ -48,10 +48,10 @@ export function handleTransfer(event: Transfer): void {
     nft.creator = event.params.to.toHex();
     nft.tokenURI = getTokenURI(event);
     nft.createdAt = event.block.timestamp;
-    // if (nft != null) {
-    //   let metric = buildCountFromNFT(nft);
-    //   metric.save();
-    // }
+    if (nft != null) {
+      let metric:Count = buildCountFromNFT(nft as NFT);
+      metric.save();
+    }
   }
   nft.owner = event.params.to.toHex();
   nft.updatedAt = event.block.timestamp;
