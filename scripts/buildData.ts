@@ -90,16 +90,19 @@ class Ethereum {
 
   async fetchContracts() {
     const contractsByNetwork: ContractsResponse = {
+      // NOTE: addresses should be lowercase.
       "mainnet": {
         GEMToken: '0x8D05F69bd9E804EB467c7e1f2902Ecd5E41a72dA',
         NFTmallERC721: '0xF9F4F60610188D977866cf8A43e092d56D67E850', // local ganache
         MarketplaceProxy: '0xe1eb03f2163F4A713e5dFbC59f36E98Ca3770BA2',
       },
+      // NOTE: addresses should be lowercase.
       "bsctestnet": {
-        GEMToken: '0x2d25AdF1D54d59B68eC2DDc0659D4c791a09cecE',
-        NFTmallERC721: '0x9cA317f9Cdb10a144f458B08ACDA11Fc53768CF0',
-        MarketplaceProxy: '0x68a2d02b51799b44D7C3F0fA1fE00abb74572eD9',
+        GEMToken: '0x2d25adf1d54d59b68ec2ddc0659d4c791a09cece',
+        NFTmallERC721: '0x9ca317f9cdb10a144f458b08acda11fc53768cf0',
+        MarketplaceProxy: '0x68a2d02b51799b44d7c3f0fa1fe00abb74572ed9',
       },
+      // NOTE: addresses should be lowercase.
       "development": {
         GEMToken: '0x8D05F69bd9E804EB467c7e1f2902Ecd5E41a72dA',
         NFTmallERC721: '0xF9F4F60610188D977866cf8A43e092d56D67E850', // local ganache

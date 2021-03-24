@@ -183,7 +183,7 @@ type Count @entity {
 # # Enums ---------------------------------------------------
 # # ---------------------------------------------------------
 enum Category @entity {
-  nftmallERC721
+  NFTMALLERC721
 }
 
 # enum OrderStatus @entity {
