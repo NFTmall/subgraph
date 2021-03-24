@@ -23,32 +23,44 @@ import * as addresses from "../data/addresses";
 
 export function handleTransfer(event: Transfer): void {
   // log.warning('transfer params {} {} {}', [event.params.tokenId.toHexString(), event.params._from.toString(), event.params.to.toString()])
-  if (event.params.tokenId.toString() == "") {
+  let id = event.params.tokenId.toString()
+  if (id == "") {
     return;
   }
 
   let contractAddress = event.address.toHexString();
   let category = getCategory(contractAddress);
-  let id = getNFTId(
-    category,
-    event.address.toHexString(),
-    event.params.tokenId.toString()
-  );
 
-  let nft = new NFT(id);
+  // TODO: later we may need use `category` as prefix
+  // let id = getNFTId(
+  //   category,
+  //   event.address.toHexString(),
+  //   event.params.tokenId.toString()
+  // );
 
-  nft.tokenId = event.params.tokenId;
-  nft.owner = event.params.to.toHex();
-  nft.contractAddress = event.address;
-  nft.category = category;
-  nft.updatedAt = event.block.timestamp;
+  let nft = NFT.load(id);
 
-  nft.tokenURI = getTokenURI(event);
-
-  if (isMint(event)) {
-    nft.createdAt = event.block.timestamp;
-    // TODO: there might be more creators
+  if (nft == null) {
+    nft = new NFT(id)
+    nft.tokenId = event.params.tokenId;
+    nft.contractAddress = event.address;
+    nft.category = category;
     nft.creator = event.params.to.toHex();
+    nft.tokenURI = getTokenURI(event);
+    nft.createdAt = event.block.timestamp;
+    // if (nft != null) {
+    //   let metric = buildCountFromNFT(nft);
+    //   metric.save();
+    // }
+  }
+  nft.owner = event.params.to.toHex();
+  nft.updatedAt = event.block.timestamp;
+  nft.save();
+
+  getOrCreateAccount(event.params.to);
+
+  // if (isMint(event)) {
+    // TODO: there might be more creators
 
     // TODO: get royalties
     // let a = getFees(event)
@@ -79,17 +91,11 @@ export function handleTransfer(event: Transfer): void {
     //   nft.nftmallERC721 = legacy.id
     // }
 
-    let metric = buildCountFromNFT(nft);
-    metric.save();
-  }
+  // }
   //  else {
   //   let oldNFT = NFT.load(id)
   //   if (cancelActiveOrder(oldNFT!, event.block.timestamp)) {
   //     nft = clearNFTOrderProperties(nft!)
   //   }
   // }
-
-  getOrCreateAccount(event.params.to);
-
-  nft.save();
 }
