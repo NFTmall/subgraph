@@ -42,13 +42,13 @@ export class NFT extends Entity {
     this.set("id", Value.fromString(value));
   }
 
-  get tokenId(): BigInt {
+  get tokenId(): string {
     let value = this.get("tokenId");
-    return value.toBigInt();
+    return value.toString();
   }
 
-  set tokenId(value: BigInt) {
-    this.set("tokenId", Value.fromBigInt(value));
+  set tokenId(value: string) {
+    this.set("tokenId", Value.fromString(value));
   }
 
   get contractAddress(): Bytes {

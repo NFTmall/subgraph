@@ -4,7 +4,7 @@
 
 type NFT @entity {
   id: ID!
-  tokenId: BigInt!
+  tokenId: String!
   contractAddress: Bytes!
   category: Category!
   owner: Account!
