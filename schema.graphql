@@ -33,6 +33,19 @@ type NFT @entity {
   # searchOrderCreatedAt: BigInt
 
   # searchNFTmallERC721Generation: Int # dummy property of legacy nft
+  transfers: [Transfer!] @derivedFrom(field: "nft")
+}
+
+type Transfer @entity {
+  id: ID!
+  txHash: String!
+  tokenId: String!
+  from: Account!
+  to: Account!
+  createdAt: BigInt!
+  blockNumber: BigInt!
+
+  nft: NFT!
 }
 
 # type NFTmallERC721 @entity {

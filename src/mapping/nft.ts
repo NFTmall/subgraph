@@ -1,8 +1,8 @@
 import { log } from "@graphprotocol/graph-ts";
-import { NFT, Count } from "../../generated/schema";
+import { NFT, Count, Transfer } from "../../generated/schema";
 import {
   NFTmallERC721,
-  Transfer,
+  Transfer as TransferEvent,
 } from "../../generated/NFTmallERC721/NFTmallERC721";
 // import * as status from '../order/status'
 import {
@@ -24,7 +24,7 @@ import * as addresses from "../data/addresses";
 // import * as status from '../modules/order/status'
 // import { buildNFTmallERC721FromNFT, getNFTmallERC721Image } from '../modules/legacynft'
 
-export function handleTransfer(event: Transfer): void {
+export function handleTransfer(event: TransferEvent): void {
   // log.warning('transfer params {} {} {}', [event.params.tokenId.toHexString(), event.params._from.toString(), event.params.to.toString()])
   let id = event.params.tokenId.toHexString();
   if (id == "") {
@@ -48,18 +48,27 @@ export function handleTransfer(event: Transfer): void {
     nft.tokenId = id;
     nft.contractAddress = event.address;
     nft.category = category;
-    nft.creator = event.params.to.toHex();
+    nft.creator = event.params.to.toHexString();
     nft.tokenURI = getTokenURI(event);
     nft.createdAt = event.block.timestamp;
 
     let metric: Count = buildCountFromNFT(nft as NFT);
     metric.save();
   }
-  nft.owner = event.params.to.toHex();
-  nft.updatedAt = event.block.timestamp;
-  nft.save();
+  nft.owner = event.params.to.toHexString()
+  nft.updatedAt = event.block.timestamp
+  nft.save()
 
-  getOrCreateAccount(event.params.to);
+  let txHash = event.transaction.hash.toHexString()
+  let transfer = new Transfer(txHash)
+  transfer.txHash = txHash
+  transfer.tokenId = id
+  transfer.from = getOrCreateAccount(event.params.from).id //event.params.from.toHexString()
+  transfer.to = getOrCreateAccount(event.params.to).id
+  transfer.createdAt = event.block.timestamp
+  transfer.blockNumber = event.block.number
+  transfer.nft = id // should be id string
+  transfer.save()
 
   // if (isMint(event)) {
   // TODO: there might be more creators

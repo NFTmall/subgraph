@@ -32,7 +32,7 @@ function initCounter(contract: string, block: Block): void {
 export function initDeal(event: ethereum.Event, contract: string): Deal {
     let block = initBlock(event.block)
 
-    let id = (event.transaction.hash.toHex() + "-" + event.logIndex.toString() + "-" + contract)
+    let id = (event.transaction.hash.toHexString() + "-" + event.logIndex.toString() + "-" + contract)
     let deal = Deal.load(id)
     if (deal == null) {
         deal = new Deal(id)
