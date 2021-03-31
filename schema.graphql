@@ -1,45 +1,207 @@
-enum DealType {
-  Order
-  Bid
-}
+# ---------------------------------------------------------
+# NFTs ----------------------------------------------------
+# ---------------------------------------------------------
 
-enum ContractType {
-  TokenSale
-  ERC721SaleV1
-  ERC721SaleV2
-  ERC1155SaleV1
-  ERC1155SaleV2
-  ExchangeV1
-}
-
-type Block @entity {
+type NFT @entity {
   id: ID!
-  number: BigInt
-  time: BigInt
+  tokenId: String!
+  contractAddress: Bytes!
+  category: Category!
+  owner: Account!
+  # minter: Account!
+  creator: Account!
+  # creators: [Account!] # TODO: support multiple creators
+  tokenURI: String
+
+  # orders: [Order!] @derivedFrom(field: "nft") # History of all orders. Should only ever be ONE open order. all others must be cancelled or sold
+  # bids: [Bid!] @derivedFrom(field: "nft") # History of all bids.
+  # activeOrder: Order
+
+  # name: String   # image: String   # royalty: BigInt
+  # fees: [BigInt!]
+  # feeAccounts: [Bytes!]
+
+  # nftmallERC721: NFTmallERC721
+
+  createdAt: BigInt!
+  updatedAt: BigInt!
+
+  # search indexes
+  # searchOrderStatus: OrderStatus
+  # searchOrderPrice: BigInt
+  # searchOrderExpiresAt: BigInt
+  # searchOrderCreatedAt: BigInt
+
+  # searchNFTmallERC721Generation: Int # dummy property of legacy nft
+  transfers: [Transfer!] @derivedFrom(field: "nft")
 }
 
-type Deal @entity {
+type Transfer @entity {
   id: ID!
-  type: DealType!
-  seller: Bytes!
-  buyer: Bytes!
-  sellTokenId: BigInt!
-  sellToken: Bytes!
-  buyToken: Bytes!
-  sellAmount: BigInt!
-  buyAmount: BigInt!
-  price: BigInt!
-  fee: BigDecimal!
-  txHash: Bytes!
+  txHash: String!
+  tokenId: String!
+  from: Account!
+  to: Account!
+  createdAt: BigInt!
   blockNumber: BigInt!
-  blockTime: BigInt!
-  contract: ContractType!
+
+  nft: NFT!
 }
 
-type Counter @entity {
-  id: ID!
-  count: BigInt!
-  firstBlock: Block!
-  lastBlock: Block!
-  contract: ContractType!
+# type NFTmallERC721 @entity {
+#   id: ID!
+#   owner: Account!
+#   description: String
+#   generation: Int
+#   nft: NFT @derivedFrom(field: "nftmallERC721")
+# }
+
+# ---------------------------------------------------------
+# Account (user) -------------------------------------------
+# ---------------------------------------------------------
+
+type Account @entity {
+  id: ID! # ETH addr
+  address: Bytes!
+  ownedNFTs: [NFT!] @derivedFrom(field: "owner")
+  createdNFTs: [NFT!] @derivedFrom(field: "creator")
+  gem: BigInt # Amount of gem owned
 }
+
+
+
+# enum DealType {
+#   Order
+#   Bid
+# }
+
+# enum ContractType {
+#   TokenSale
+#   ERC721SaleV1
+#   ERC721SaleV2
+#   ERC1155SaleV1
+#   ERC1155SaleV2
+#   ExchangeV1
+# }
+
+# type Block @entity {
+#   id: ID!
+#   number: BigInt
+#   time: BigInt
+# }
+
+# type Deal @entity {
+#   id: ID!
+#   type: DealType!
+#   seller: Bytes!
+#   buyer: Bytes!
+#   sellTokenId: BigInt!
+#   sellToken: Bytes!
+#   buyToken: Bytes!
+#   sellAmount: BigInt!
+#   buyAmount: BigInt!
+#   price: BigInt!
+#   fee: BigDecimal!
+#   txHash: Bytes!
+#   blockNumber: BigInt!
+#   blockTime: BigInt!
+#   contract: ContractType!
+# }
+
+# type Counter @entity {
+#   id: ID!
+#   count: BigInt!
+#   firstBlock: Block!
+#   lastBlock: Block!
+#   contract: ContractType!
+# }
+
+
+
+
+
+
+
+
+
+# # ---------------------------------------------------------
+# # Orders --------------------------------------------------
+# # ---------------------------------------------------------
+
+# # thegraph doesn't support nested property searches, so we're doing promoting properties
+# # we need from each NFT type to the Order, in order to search for them, prefixing them with search_[nft]_[prop]
+# type Order @entity {
+#   id: ID!
+#   category: Category!
+#   nft: NFT
+#   nftAddress: Bytes!
+#   txHash: Bytes!
+#   owner: Bytes!
+#   buyer: Bytes
+#   price: BigInt!
+#   status: OrderStatus!
+#   blockNumber: BigInt!
+#   expiresAt: BigInt!
+#   createdAt: BigInt!
+#   updatedAt: BigInt!
+# }
+
+# # ---------------------------------------------------------
+# # Bids ----------------------------------------------------
+# # ---------------------------------------------------------
+
+# type Bid @entity {
+#   id: ID!
+#   category: Category!
+#   nft: NFT
+#   nftAddress: Bytes!
+#   bidder: Bytes
+#   seller: Bytes
+#   price: BigInt!
+#   fingerprint: Bytes
+#   status: OrderStatus!
+#   blockchainId: String!
+#   blockNumber: BigInt!
+#   expiresAt: BigInt!
+#   createdAt: BigInt!
+#   updatedAt: BigInt!
+# }
+
+# # ---------------------------------------------------------
+# # Counts --------------------------------------------------
+# # ---------------------------------------------------------
+
+# # thegraph doesn't support count operations, but we need them to paginate results
+# # This entity is a workaround to this issue, but it's still not enough, as we'd need counts for more complex queries
+type Count @entity {
+  id: ID!
+  orderTotal: Int!
+  orderNFTmallERC721: Int!
+  nftmallERC721Total: Int!
+  started: Int!
+}
+
+# # struct Fee {
+# #   address payable account;
+# #   uint value;
+# # }
+# # type Fee @entity {
+# #   id: ID!
+# #   beneficiary: Account!
+# #   value: BigInt!
+# # }
+
+
+# # ---------------------------------------------------------
+# # Enums ---------------------------------------------------
+# # ---------------------------------------------------------
+enum Category @entity {
+  NFTMALLERC721
+}
+
+# enum OrderStatus @entity {
+#   open
+#   sold
+#   cancelled
+# }
+

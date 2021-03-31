@@ -1,0 +1,96 @@
+specVersion: 0.0.2
+description: Blockchain indexer for NFTmall
+repository: https://github.com/NFTmall/subgraph-bsc
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: NFTmallERC721
+    network: {{network}}
+    source:
+      address: '{{address:NFTmallERC721}}'
+      abi: NFTmallERC721
+      startBlock: {{startBlock:NFTmallERC721}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.3
+      language: wasm/assemblyscript
+      file: ./src/mapping/nft.ts
+      entities:
+        - NFTmallERC721
+      abis:
+        - name: NFTmallERC721
+          file: ./abis/NFTmallERC721.json
+      eventHandlers:
+        - event: Transfer(indexed address,indexed address,indexed uint256)
+          handler: handleTransfer
+
+  # - kind: ethereum/contract
+  #   name: TokenSale
+  #   network: {{network}}
+  #   source:
+  #     address: '{{address:TokenSale}}'
+  #     abi: TokenSale
+  #     startBlock: {{startBlock:TokenSale}}
+  #   mapping:
+  #     kind: ethereum/events
+  #     apiVersion: 0.0.4
+  #     language: wasm/assemblyscript
+  #     entities:
+  #       - Deal
+  #       - Counter
+  #       - Block
+  #     abis:
+  #       - name: TokenSale
+  #         file: ./abis/TokenSale.json
+  #     eventHandlers:
+  #       - event: Buy(indexed address,indexed uint256,address,address,uint256,uint256)
+  #         handler: handleBuy
+  #     file: ./src/mapping/TokenSale.ts
+
+  # - kind: ethereum/contract
+  #   name: ERC721SaleV2
+  #   network: {{network}}
+  #   source:
+  #     address: '{{address:ERC721SaleV2}}'
+  #     abi: ERC721SaleV2
+  #     startBlock: {{startBlock:ERC721SaleV2}}
+  #   mapping:
+  #     kind: ethereum/events
+  #     apiVersion: 0.0.4
+  #     language: wasm/assemblyscript
+  #     entities:
+  #       - Deal
+  #       - Counter
+  #       - Block
+  #     abis:
+  #       - name: ERC721SaleV2
+  #         file: ./abis/ERC721SaleV2.json
+  #     eventHandlers:
+  #       - event: Buy(indexed address,indexed uint256,address,address,uint256,uint256)
+  #         handler: handleBuy
+  #     file: ./src/mapping/ERC721SaleV2.ts
+
+  # - kind: ethereum/contract
+  #   name: ExchangeV1
+  #   network: {{network}}
+  #   source:
+  #     address: '{{address:ExchangeV1}}'
+  #     abi: ExchangeV1
+  #     startBlock: {{startBlock:ExchangeV1}}
+  #   mapping:
+  #     kind: ethereum/events
+  #     apiVersion: 0.0.4
+  #     language: wasm/assemblyscript
+  #     entities:
+  #       - Deal
+  #       - Counter
+  #       - Block
+  #     abis:
+  #       - name: ExchangeV1
+  #         file: ./abis/ExchangeV1.json
+  #     eventHandlers:
+  #       - event: Buy(indexed address,indexed uint256,uint256,address,address,uint256,uint256,address,uint256,uint256)
+  #         handler: handleBuy
+  #     file: ./src/mapping/ExchangeV1.ts
+
