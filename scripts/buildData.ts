@@ -23,9 +23,9 @@ const startBlockByNetwork: Record<Network, Record<ContractName, number>> = {
     MarketplaceProxy: 0,
   },
   [Network.BSCTESTNET]: {
-    GEMToken: 7248045,
-    NFTmallERC721: 7248045,
-    MarketplaceProxy: 7248045,
+    GEMToken: 14480000,
+    NFTmallERC721: 14480000,
+    MarketplaceProxy: 14480000,
   },
   [Network.DEVELOPMENT]: {
     GEMToken: 0,
@@ -98,9 +98,9 @@ class Ethereum {
       },
       // NOTE: addresses should be lowercase.
       "bsctestnet": {
-        GEMToken: '0x2d25adf1d54d59b68ec2ddc0659d4c791a09cece',
-        NFTmallERC721: '0x9ca317f9cdb10a144f458b08acda11fc53768cf0',
-        MarketplaceProxy: '0x68a2d02b51799b44d7c3f0fa1fe00abb74572ed9',
+        GEMToken: '0x591c583bfaee97e6edd4d5960c2639490f847d43',
+        NFTmallERC721: '0xba5966fa57de9960280ecf9afecb93d867ba00bc',
+        MarketplaceProxy: '0xde314da8e3717bfe962242f6966c5d177cb353d1',
       },
       // NOTE: addresses should be lowercase.
       "development": {
